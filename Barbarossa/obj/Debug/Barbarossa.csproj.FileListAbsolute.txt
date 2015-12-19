@@ -1,0 +1,26 @@
+d:\eigene dateien\documents\visual studio 2013\Projects\Barbarossa\Barbarossa\bin\Debug\Barbarossa.exe.config
+d:\eigene dateien\documents\visual studio 2013\Projects\Barbarossa\Barbarossa\obj\Debug\Barbarossa.csprojResolveAssemblyReference.cache
+d:\eigene dateien\documents\visual studio 2013\Projects\Barbarossa\Barbarossa\bin\Debug\csfml-audio-2.dll
+d:\eigene dateien\documents\visual studio 2013\Projects\Barbarossa\Barbarossa\bin\Debug\csfml-graphics-2.dll
+d:\eigene dateien\documents\visual studio 2013\Projects\Barbarossa\Barbarossa\bin\Debug\csfml-network-2.dll
+d:\eigene dateien\documents\visual studio 2013\Projects\Barbarossa\Barbarossa\bin\Debug\csfml-system-2.dll
+d:\eigene dateien\documents\visual studio 2013\Projects\Barbarossa\Barbarossa\bin\Debug\csfml-window-2.dll
+d:\eigene dateien\documents\visual studio 2013\Projects\Barbarossa\Barbarossa\bin\Debug\Barbarossa.exe
+d:\eigene dateien\documents\visual studio 2013\Projects\Barbarossa\Barbarossa\bin\Debug\Barbarossa.pdb
+d:\eigene dateien\documents\visual studio 2013\Projects\Barbarossa\Barbarossa\bin\Debug\sfmlnet-audio-2.dll
+d:\eigene dateien\documents\visual studio 2013\Projects\Barbarossa\Barbarossa\bin\Debug\sfmlnet-graphics-2.dll
+d:\eigene dateien\documents\visual studio 2013\Projects\Barbarossa\Barbarossa\bin\Debug\sfmlnet-system-2.dll
+d:\eigene dateien\documents\visual studio 2013\Projects\Barbarossa\Barbarossa\bin\Debug\sfmlnet-window-2.dll
+d:\eigene dateien\documents\visual studio 2013\Projects\Barbarossa\Barbarossa\obj\Debug\Barbarossa.exe
+d:\eigene dateien\documents\visual studio 2013\Projects\Barbarossa\Barbarossa\obj\Debug\Barbarossa.pdb
+D:\users\friedi\Programmieren\mit Leo\Barbarossa\Barbarossa\bin\Debug\Barbarossa.exe.config
+D:\users\friedi\Programmieren\mit Leo\Barbarossa\Barbarossa\obj\Debug\Barbarossa.exe
+D:\users\friedi\Programmieren\mit Leo\Barbarossa\Barbarossa\obj\Debug\Barbarossa.pdb
+D:\users\friedi\Programmieren\mit Leo\Barbarossa\Barbarossa\bin\Debug\csfml-audio-2.dll
+D:\users\friedi\Programmieren\mit Leo\Barbarossa\Barbarossa\bin\Debug\csfml-graphics-2.dll
+D:\users\friedi\Programmieren\mit Leo\Barbarossa\Barbarossa\bin\Debug\csfml-network-2.dll
+D:\users\friedi\Programmieren\mit Leo\Barbarossa\Barbarossa\bin\Debug\csfml-system-2.dll
+D:\users\friedi\Programmieren\mit Leo\Barbarossa\Barbarossa\bin\Debug\csfml-window-2.dll
+D:\users\friedi\Programmieren\mit Leo\Barbarossa\Barbarossa\bin\Debug\Barbarossa.exe
+D:\users\friedi\Programmieren\mit Leo\Barbarossa\Barbarossa\bin\Debug\Barbarossa.pdb
+D:\users\friedi\Programmieren\mit Leo\Barbarossa\Barbarossa\obj\Debug\Barbarossa.csprojResolveAssemblyReference.cache
