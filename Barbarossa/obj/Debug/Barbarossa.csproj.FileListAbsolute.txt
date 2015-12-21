@@ -28,3 +28,16 @@ D:\users\friedi\Programmieren\mit Leo\Barbarossa\Barbarossa\bin\Debug\Barbarossa
 D:\users\friedi\Programmieren\mit Leo\Barbarossa\Barbarossa\bin\Debug\BarbarossaShared.dll
 D:\users\friedi\Programmieren\mit Leo\Barbarossa\Barbarossa\bin\Debug\BarbarossaShared.pdb
 D:\users\friedi\Programmieren\mit Leo\Barbarossa\Barbarossa\obj\Debug\Barbarossa.csprojResolveAssemblyReference.cache
+C:\Users\Leo\Source\Repos\Barbarossa2\Barbarossa\bin\Debug\Barbarossa.exe.config
+C:\Users\Leo\Source\Repos\Barbarossa2\Barbarossa\obj\Debug\Barbarossa.exe
+C:\Users\Leo\Source\Repos\Barbarossa2\Barbarossa\obj\Debug\Barbarossa.pdb
+C:\Users\Leo\Source\Repos\Barbarossa2\Barbarossa\bin\Debug\csfml-system-2.dll
+C:\Users\Leo\Source\Repos\Barbarossa2\Barbarossa\bin\Debug\csfml-audio-2.dll
+C:\Users\Leo\Source\Repos\Barbarossa2\Barbarossa\bin\Debug\csfml-graphics-2.dll
+C:\Users\Leo\Source\Repos\Barbarossa2\Barbarossa\bin\Debug\csfml-network-2.dll
+C:\Users\Leo\Source\Repos\Barbarossa2\Barbarossa\bin\Debug\csfml-window-2.dll
+C:\Users\Leo\Source\Repos\Barbarossa2\Barbarossa\bin\Debug\Barbarossa.exe
+C:\Users\Leo\Source\Repos\Barbarossa2\Barbarossa\bin\Debug\Barbarossa.pdb
+C:\Users\Leo\Source\Repos\Barbarossa2\Barbarossa\bin\Debug\BarbarossaShared.dll
+C:\Users\Leo\Source\Repos\Barbarossa2\Barbarossa\bin\Debug\BarbarossaShared.pdb
+C:\Users\Leo\Source\Repos\Barbarossa2\Barbarossa\obj\Debug\Barbarossa.csprojResolveAssemblyReference.cache
