@@ -56,6 +56,15 @@ namespace BarbarossaEditor
             _graphicsDevice.SetUnderlying(e.Graphics);
             _graphicsDevice.SetOrigin(_origin);
             _drawManager.Draw();
+
+            if (_movePathCreation)
+            {
+                foreach (Vector2f v in _movePath)
+                {
+                    _movePathDrawable.UpdatePosition(v);
+                    _movePathDrawable.Draw(_graphicsDevice);
+                }
+            }
         }
 
         private void addObjectFromTypeList(Vector2f mousePosition)
@@ -64,6 +73,15 @@ namespace BarbarossaEditor
             {
                 switch ((string)typeListBox.SelectedItem)
                 {
+                    case "Monster":
+                        {
+                            _movePathCreation = true;
+                            _movePathDrawable = _drawableFactory.CreateImage("..\\..\\..\\Bilder\\monster.png");
+                            _movePath = new List<Vector2f>();
+                            _movePath.Add(mousePosition);
+                            break;
+                        }
+
                     case "Platform":
                         {
                             ObjectConnector con = _objectFactory.CreatePlatform(mousePosition);
@@ -92,9 +110,9 @@ namespace BarbarossaEditor
             if (addRadioButton.Checked && e.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 if (_movePathCreation)
-                    _movePath.Add(new Vector2f(e.X, e.Y));
+                    _movePath.Add(new Vector2f(e.X, e.Y)-_origin);
                 else
-                    addObjectFromTypeList(new Vector2f(e.X, e.Y)+_origin);
+                    addObjectFromTypeList(new Vector2f(e.X, e.Y)-_origin);
             }
             canvas.Refresh();
         }
