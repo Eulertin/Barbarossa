@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 using SFML.System;
 
 
-namespace Barbarossa
+namespace BarbarossaShared
 {
 
-class LogicManager
+    public class LogicManager
     {
-        List< IPositionable > _positionableList;
-        List< IMoveable > _moveableList;
-        List< IPassiveCollider > _passiveColliderList;
-        List<IHasDrawable> _hasDrawableList;
+        List<IPositionable> _positionableList;
+        List<IMoveable> _moveableList;
+        List<IPassiveCollider> _passiveColliderList;
+        //List<IHasDrawable> _hasDrawableList;
         List<Player> _playerList;
 
         Vector2f _gravitation;
@@ -24,7 +24,8 @@ class LogicManager
             _positionableList = new List<IPositionable>();
             _moveableList = new List<IMoveable>();
             _passiveColliderList = new List<IPassiveCollider>();
-            _hasDrawableList = new List<IHasDrawable>();
+            _playerList = new List<Player>();
+            //_hasDrawableList = new List<IHasDrawable>();
             _gravitation = new Vector2f(0, (float)9.81);
         }
 
@@ -33,12 +34,25 @@ class LogicManager
             _positionableList = new List<IPositionable>();
             _moveableList = new List<IMoveable>();
             _passiveColliderList = new List<IPassiveCollider>();
-            _hasDrawableList = new List<IHasDrawable>();
+            _playerList = new List<Player>();
+            //_hasDrawableList = new List<IHasDrawable>();
             _gravitation = gravitation;
         }
 
-        public void Update( float deltaTime )
+        public void PassControlInfoObject(ControlInfo cio)
         {
+            foreach (Player p in _playerList)
+            {
+                p.SetControlInfoObject(cio);
+            }
+        }
+
+        public void Update(float deltaTime)
+        {
+            foreach (Player player in _playerList)
+            {
+                player.Update(deltaTime);
+            }
             foreach (IMoveable moveable in _moveableList)
             {
                 if (moveable.IsGravitationallyInfluenced())                  //Gravitation
@@ -50,13 +64,13 @@ class LogicManager
                 {
                     IActiveCollider aCollider = moveable as IActiveCollider;
                     Vector2f position = aCollider.Position;
-                    Vector2f proposedMovement = aCollider.ProposedMovement;
+                    Vector2f proposedMovement = aCollider.GetProposedMovement(deltaTime);
                     Vector2f size = aCollider.Size;
                     List<Collision> CollisionList = new List<Collision>();
 
                     foreach (IPassiveCollider pCollider in _passiveColliderList)
                     {
-                        Collision newCollision = pCollider.CheckCollision(aCollider);
+                        Collision newCollision = pCollider.CheckCollision(aCollider,proposedMovement);
                         if (newCollision != null)
                         {
                             CollisionList.Add(newCollision);
@@ -69,13 +83,13 @@ class LogicManager
                     foreach (Collision currentCollision in CollisionList)
                     {
                         //spezifische funktionen für collider
-                        if ( currentCollision.Collider.IsSolid )
+                        if (currentCollision.Collider.IsSolid)
                         {
                             if (!horizontal)
                             {
                                 if (currentCollision.Type == CollisionType.Left || currentCollision.Type == CollisionType.Right)
                                 {
-                                    aCollider.ApplyForce(new Vector2f(-(aCollider.ProposedMovement - currentCollision.MovementBefore).X, 0));
+                                    aCollider.ApplyForce(new Vector2f(-((proposedMovement - currentCollision.MovementBefore).X)*1.001f/deltaTime, 0));
                                     if (vertical)
                                     {
                                         break;
@@ -88,7 +102,7 @@ class LogicManager
                             {
                                 if (currentCollision.Type == CollisionType.Top || currentCollision.Type == CollisionType.Bot)
                                 {
-                                    aCollider.ApplyForce(new Vector2f(0,-(aCollider.ProposedMovement - currentCollision.MovementBefore).Y));
+                                    aCollider.ApplyForce(new Vector2f(0, -((proposedMovement - currentCollision.MovementBefore).Y*1.001f)/deltaTime));
                                     if (currentCollision.Type == CollisionType.Top)
                                     {
                                         if (aCollider is Player)
@@ -112,7 +126,7 @@ class LogicManager
         }
 
         public void AddObject(Object newObject)
-        { 
+        {
             if (newObject is IPositionable)
             {
                 _positionableList.Add(newObject as IPositionable);
@@ -130,11 +144,6 @@ class LogicManager
                 {
                     _passiveColliderList.Add(newObject as IPassiveCollider);
                 }
-            }
-
-            if (newObject is IHasDrawable)
-            {
-                _hasDrawableList.Add(newObject as IHasDrawable);
             }
         }
 
@@ -160,10 +169,10 @@ class LogicManager
                     success |= _passiveColliderList.Remove(leaver as IPassiveCollider);
                 }
             }
-            if (leaver is IHasDrawable)
-            {
-                success |= _hasDrawableList.Remove(leaver as IHasDrawable);
-            }
+            //if (leaver is IHasDrawable)
+            //{
+            //    success |= _hasDrawableList.Remove(leaver as IHasDrawable);
+            //}
             return success;
         }
     }

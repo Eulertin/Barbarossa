@@ -1,0 +1,37 @@
+<root>
+  <platform0>
+    <Logic>
+      <Type type="Platform" />
+      <Position x="131" y="330" />
+      <Size width="200" height="100" />
+    </Logic>
+    <Draw>
+      <Type type="Platform" />
+      <Position x="131" y="330" />
+      <Size width="200" height="100" />
+    </Draw>
+  </platform0>
+  <platform1>
+    <Logic>
+      <Type type="Platform" />
+      <Position x="342" y="273" />
+      <Size width="200" height="100" />
+    </Logic>
+    <Draw>
+      <Type type="Platform" />
+      <Position x="342" y="273" />
+      <Size width="200" height="100" />
+    </Draw>
+  </platform1>
+  <player0>
+    <Logic>
+      <Type type="Player" />
+      <Position x="231" y="272" />
+      <Size width="16" height="50" />
+    </Logic>
+    <Draw>
+      <Type type="Image" />
+      <Path path="..\..\..\Bilder\spieler.png" />
+    </Draw>
+  </player0>
+</root>

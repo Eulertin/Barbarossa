@@ -5,12 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using SFML.System;
 
-namespace Barbarossa
+namespace BarbarossaShared
 {
-    interface IPassiveCollider : IPositionable
+    public interface IPassiveCollider : IPositionable
     {
         //Returns movement vector which is shortened if collision is being detected
-        Collision CheckCollision(IActiveCollider activeCollider);
+        Collision CheckCollision(IActiveCollider activeCollider, Vector2f proposedMovement);
         bool IsSolid { get; }
+        Vector2f Size { get; }
     }
 }

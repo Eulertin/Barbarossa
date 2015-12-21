@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SFML.System;
 
-namespace Barbarossa
+namespace BarbarossaShared
 {
     public interface IMoveable : IPositionable
     {

@@ -5,11 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using SFML.System;
 
-namespace Barbarossa
+namespace BarbarossaShared
 {
-    interface IActiveCollider : IMoveable
+    public interface IPositionable
     {
-        Vector2f ProposedMovement { get; }
-        Vector2f Size { get; }
+        Vector2f Position { get; }
     }
 }

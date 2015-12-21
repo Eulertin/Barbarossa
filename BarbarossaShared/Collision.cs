@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SFML.System;
-namespace Barbarossa
+namespace BarbarossaShared
 {
 
     public enum CollisionType
@@ -15,7 +15,7 @@ namespace Barbarossa
         Right
     }
 
-    class Collision : IComparable<Collision>
+    public class Collision : IComparable<Collision>
     {
         public Collision(Vector2f movementBefore, IPassiveCollider collider, CollisionType type)
         {
