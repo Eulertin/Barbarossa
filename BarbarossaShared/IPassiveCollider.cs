@@ -13,5 +13,6 @@ namespace BarbarossaShared
         Collision CheckCollision(IActiveCollider activeCollider, Vector2f proposedMovement);
         bool IsSolid { get; }
         Vector2f Size { get; }
+        bool hello;
     }
 }
