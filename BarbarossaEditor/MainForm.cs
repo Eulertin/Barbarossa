@@ -29,6 +29,10 @@ namespace BarbarossaEditor
 
         Stopwatch _scrollWatch;
 
+        bool _movePathCreation = false;
+        IDrawable _movePathDrawable;
+        List<Vector2f> _movePath;
+
         public MainForm()
         {
             InitializeComponent();
@@ -87,7 +91,10 @@ namespace BarbarossaEditor
         {
             if (addRadioButton.Checked && e.Button == System.Windows.Forms.MouseButtons.Left)
             {
-                addObjectFromTypeList(new Vector2f(e.X, e.Y));
+                if (_movePathCreation)
+                    _movePath.Add(new Vector2f(e.X, e.Y));
+                else
+                    addObjectFromTypeList(new Vector2f(e.X, e.Y)+_origin);
             }
             canvas.Refresh();
         }

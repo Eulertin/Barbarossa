@@ -184,7 +184,8 @@
             this.typeListBox.FormattingEnabled = true;
             this.typeListBox.Items.AddRange(new object[] {
             "Platform",
-            "Player"});
+            "Player",
+            "Monster"});
             this.typeListBox.Location = new System.Drawing.Point(6, 6);
             this.typeListBox.Name = "typeListBox";
             this.typeListBox.Size = new System.Drawing.Size(285, 134);

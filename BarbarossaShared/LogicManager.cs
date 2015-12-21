@@ -89,7 +89,7 @@ namespace BarbarossaShared
                             {
                                 if (currentCollision.Type == CollisionType.Left || currentCollision.Type == CollisionType.Right)
                                 {
-                                    aCollider.ApplyForce(new Vector2f(-((proposedMovement - currentCollision.MovementBefore).X)*1.001f/deltaTime, 0));
+                                    aCollider.ApplyForce(new Vector2f(-((proposedMovement - currentCollision.MovementBefore).X)*1.1f/deltaTime, 0));
                                     if (vertical)
                                     {
                                         break;
@@ -102,7 +102,7 @@ namespace BarbarossaShared
                             {
                                 if (currentCollision.Type == CollisionType.Top || currentCollision.Type == CollisionType.Bot)
                                 {
-                                    aCollider.ApplyForce(new Vector2f(0, -((proposedMovement - currentCollision.MovementBefore).Y*1.001f)/deltaTime));
+                                    aCollider.ApplyForce(new Vector2f(0, -((proposedMovement - currentCollision.MovementBefore).Y)*1.1f/deltaTime));
                                     if (currentCollision.Type == CollisionType.Top)
                                     {
                                         if (aCollider is Player)

@@ -34,9 +34,9 @@ namespace BarbarossaShared
             _drawable = drawable;
             _position = position;
             _size = size;
-            _horizontalAcceleration = 40f;
-            _jumpAcceleration = 200f;
-            _maxHorizontalSpeed = 75f;
+            _horizontalAcceleration = 150f;
+            _jumpAcceleration = 400f;
+            _maxHorizontalSpeed = 100f;
             _isGravitaionallyInfluenced = true;
         }
 
@@ -68,8 +68,6 @@ namespace BarbarossaShared
         {
             _position += deltaTime * _speed;
             _drawable.UpdatePosition(_position);
-            if (Math.Abs(_speed.X) < 0.5)
-                _speed.X = 0;
             if (Math.Abs(_speed.Y) < 0.5)
                 _speed.Y = 0;
         }
@@ -81,7 +79,7 @@ namespace BarbarossaShared
                 float maxAcceleration = _maxHorizontalSpeed + _speed.X;
                 if (maxAcceleration > 0)
                 {
-                    ApplyForce(new Vector2f(-deltaTime * Math.Min(_horizontalAcceleration, maxAcceleration), 0));
+                    ApplyForce(new Vector2f(-Math.Min(deltaTime * _horizontalAcceleration, maxAcceleration), 0));
                 }
             }
             else if (_controlInfo.Right)
@@ -89,26 +87,26 @@ namespace BarbarossaShared
                 float maxAcceleration = _maxHorizontalSpeed - _speed.X;
                 if (maxAcceleration > 0)
                 {
-                    ApplyForce(new Vector2f(deltaTime * Math.Min(_horizontalAcceleration, maxAcceleration), 0));
+                    ApplyForce(new Vector2f(Math.Min(deltaTime * _horizontalAcceleration, maxAcceleration), 0));
                 }
             }
             else
             {
                 if (_speed.X < 0)
                 {
-                    ApplyForce(new Vector2f(deltaTime * Math.Min(_horizontalAcceleration, -(_speed.X)), 0));
+                    ApplyForce(new Vector2f(Math.Min(deltaTime * _horizontalAcceleration, -(_speed.X)), 0));
                 }
-                else if (_speed.X < 0)
+                else if (_speed.X > 0)
                 {
-                    ApplyForce(new Vector2f(deltaTime * Math.Max(-(_horizontalAcceleration), -(_speed.X)), 0));
+                    ApplyForce(new Vector2f(Math.Max(-(deltaTime * _horizontalAcceleration), -(_speed.X)), 0));
                 }
-                if (_onGround)
+            }
+            if (_onGround)
+            {
+                _onGround = false;
+                if (_controlInfo.Up)
                 {
-                    _onGround = false;
-                    if (_controlInfo.Up)
-                    {
-                        ApplyForce(new Vector2f(0,-_jumpAcceleration));
-                    }
+                    ApplyForce(new Vector2f(0, -_jumpAcceleration));
                 }
             }
         }
