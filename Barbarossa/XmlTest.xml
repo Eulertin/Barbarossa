@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Hüflkv>
+  <Draw>
+    <Type> name="djfk" </Type>
+    <file></file>
+  </Draw>
+  <Logic>
+    <Type> name="sdf"</Type>
+    <Position> x="1" y</Position>
+  </Logic>
+</Hüflkv>
