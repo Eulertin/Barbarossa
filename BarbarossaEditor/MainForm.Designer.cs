@@ -176,6 +176,7 @@
             this.addRadioButton.TabStop = true;
             this.addRadioButton.Text = "Hinzufügen";
             this.addRadioButton.UseVisualStyleBackColor = true;
+            this.addRadioButton.CheckedChanged += new System.EventHandler(this.addRadioButton_CheckedChanged);
             // 
             // typeListBox
             // 
@@ -191,6 +192,7 @@
             this.typeListBox.Name = "typeListBox";
             this.typeListBox.Size = new System.Drawing.Size(285, 134);
             this.typeListBox.TabIndex = 1;
+            this.typeListBox.SelectedIndexChanged += new System.EventHandler(this.typeListBox_SelectedIndexChanged);
             // 
             // objectListView
             // 

@@ -12,7 +12,7 @@ namespace BarbarossaEditor
     {
         EditorDrawableFactory _drawableFactory;
 
-        Vector2f standardPlatformSize = new Vector2f(200,100);
+        public Vector2f StandardPlatformSize = new Vector2f(200,100);
 
         public ObjectFactory(EditorDrawableFactory drawableFactory)
         {
@@ -28,7 +28,7 @@ namespace BarbarossaEditor
 
         public ObjectConnector CreatePlatform(Vector2f midPosition)
         {
-            return CreatePlatform(midPosition - standardPlatformSize / 2, standardPlatformSize);
+            return CreatePlatform(midPosition, StandardPlatformSize);
         }
 
         public ObjectConnector CreatePlayer(Vector2f startPosition)

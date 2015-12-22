@@ -46,7 +46,7 @@ namespace BarbarossaShared
             switch (node["Type"].Attributes["type"].Value)
             {
                 case "Monster":
-                    o = new Monster(drawable);
+                    //o = new Monster(drawable,);
                     break;
 
                 case "Platform":

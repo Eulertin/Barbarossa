@@ -30,8 +30,9 @@ namespace BarbarossaEditor
 
         Stopwatch _scrollWatch;
 
+        IDrawable _addDrawable;
+
         bool _movePathCreation = false;
-        IDrawable _movePathDrawable;
         List<Vector2f> _movePath;
 
         public MainForm()
@@ -63,31 +64,48 @@ namespace BarbarossaEditor
                 Pen pathPen = new Pen(Color.Red);
                 foreach (Vector2f v in _movePath)
                 {
-                    _movePathDrawable.UpdatePosition(v);
-                    _movePathDrawable.Draw(_graphicsDevice);
+                    _addDrawable.UpdatePosition(v);
+                    _addDrawable.Draw(_graphicsDevice);
                 }
 
-                _movePathDrawable.UpdatePosition(new Vector2f(
-                    canvas.PointToClient(MousePosition).X, canvas.PointToClient(MousePosition).Y) - _origin);
-                _movePathDrawable.Draw(_graphicsDevice);
+                _addDrawable.UpdatePosition(MouseVector);
+                _addDrawable.Draw(_graphicsDevice);
 
                 for (int i = 0; i < _movePath.Count - 1; i++)
                 {
-                    e.Graphics.DrawLine(pathPen, _movePath[i].X, _movePath[i].Y, _movePath[i+1].X, _movePath[i+1].Y);
+                    e.Graphics.DrawLine(pathPen, _movePath[i].X, _movePath[i].Y, _movePath[i + 1].X, _movePath[i + 1].Y);
                 }
 
-                e.Graphics.DrawLine(pathPen, new Point((int)(_movePath[_movePath.Count - 1].X - _origin.X),
-                    (int)(_movePath[_movePath.Count - 1].Y - _origin.Y)),
-                    PointToClient(MousePosition));
+                e.Graphics.DrawLine(pathPen, vectorToPoint(_movePath[_movePath.Count - 1]),
+                    vectorToPoint(MouseVector));
 
-                e.Graphics.DrawLine(pathPen, PointToClient(MousePosition),
-                    new Point((int)(_movePath[0].X - _origin.X),
-                    (int)(_movePath[0].Y - _origin.Y)));
+                e.Graphics.DrawLine(pathPen, vectorToPoint(MouseVector), vectorToPoint(_movePath[0]));
 
+            }
+            else if (canvas.ClientRectangle.Contains(canvas.PointToClient(MousePosition)) && _addDrawable != null)
+            {
+                _addDrawable.UpdatePosition(MouseVector);
+                _addDrawable.Draw(_graphicsDevice);
             }
         }
 
-        private void addObjectFromTypeList(Vector2f mousePosition)
+        private void canvas_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (addRadioButton.Checked && e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                if (_movePathCreation)
+                    _movePath.Add(MouseVector);
+                else
+                    addObjectFromTypeList(MouseVector);
+            }
+            else if (_movePathCreation && e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                addObjectFromTypeList(new Vector2f(), true);
+            }
+            canvas.Refresh();
+        }
+
+        private void addObjectFromTypeList(Vector2f mousePosition, bool movePathCompleted = false)
         {
             if (typeListBox.SelectedItem != null)
             {
@@ -95,10 +113,19 @@ namespace BarbarossaEditor
                 {
                     case "Monster":
                         {
-                            _movePathCreation = true;
-                            _movePathDrawable = _drawableFactory.CreateImage("..\\..\\..\\Bilder\\monster.png");
-                            _movePath = new List<Vector2f>();
-                            _movePath.Add(mousePosition);
+                            if (movePathCompleted)
+                            {
+                                typeListBox.Enabled = true;
+                                _movePathCreation = false;
+                            }
+                            else
+                            {
+                                _movePathCreation = true;
+                                typeListBox.Enabled = false;
+                                _addDrawable = _drawableFactory.CreateImage("..\\..\\..\\Bilder\\monster.png");
+                                _movePath = new List<Vector2f>();
+                                _movePath.Add(mousePosition);
+                            }
                             break;
                         }
 
@@ -123,18 +150,6 @@ namespace BarbarossaEditor
                         }
                 }
             }
-        }
-
-        private void canvas_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (addRadioButton.Checked && e.Button == System.Windows.Forms.MouseButtons.Left)
-            {
-                if (_movePathCreation)
-                    _movePath.Add(new Vector2f(e.X, e.Y) - _origin);
-                else
-                    addObjectFromTypeList(new Vector2f(e.X, e.Y) - _origin);
-            }
-            canvas.Refresh();
         }
 
         private void speichernAlsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -168,9 +183,8 @@ namespace BarbarossaEditor
 
         private void scrollTimer_Tick(object sender, EventArgs e)
         {
-            if (MouseButtons == System.Windows.Forms.MouseButtons.Right)
+            if (MouseButtons == System.Windows.Forms.MouseButtons.Middle)
             {
-                System.Windows.Input.Keyboard keyboard;
                 if (canvas.PointToClient(MousePosition).X < 200)
                     _origin += new Vector2f(1, 0) * _scrollWatch.ElapsedMilliseconds / 5f;
                 if (canvas.PointToClient(MousePosition).X > canvas.ClientSize.Width - 200)
@@ -192,8 +206,64 @@ namespace BarbarossaEditor
 
         private void canvas_MouseMove(object sender, MouseEventArgs e)
         {
-            if (_movePathCreation)
+            if (addRadioButton.Checked)
                 canvas.Refresh();
         }
+
+        private void addRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (addRadioButton.Checked)
+                reselectAddDrawable();
+            else
+                _addDrawable = null;
+        }
+
+        private void reselectAddDrawable()
+        {
+            if (typeListBox.SelectedItem != null)
+                switch ((string)typeListBox.SelectedItem)
+                {
+                    case "Monster":
+                        {
+                            _addDrawable = _drawableFactory.CreateImage("..\\..\\..\\Bilder\\monster.png");
+                            break;
+                        }
+
+                    case "Player":
+                        {
+                            _addDrawable = _drawableFactory.CreateImage("..\\..\\..\\Bilder\\spieler.png");
+                            break;
+                        }
+
+                    case "Platform":
+                        {
+                            _addDrawable = _drawableFactory.CreateDrawablePlatform(new Vector2f(0, 0), _objectFactory.StandardPlatformSize);
+                            break;
+                        }
+                }
+            else
+                _addDrawable = null;
+        }
+
+        private void typeListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (addRadioButton.Checked)
+                reselectAddDrawable();
+        }
+
+        private Point vectorToPoint(Vector2f v)
+        {
+            return new Point((int)v.X, (int)v.Y);
+        }
+
+        private Vector2f MouseVector
+        {
+            get
+            {
+                Point p = canvas.PointToClient(MousePosition);
+                return new Vector2f(p.X, p.Y) - _origin;
+            }
+        }
+
     }
 }

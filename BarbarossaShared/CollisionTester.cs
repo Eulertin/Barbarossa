@@ -10,43 +10,6 @@ namespace BarbarossaShared
 
     class CollisionTester
     {
-        /// <summary>
-        /// Löst ein 2x2 lineares Gleichungssystem
-        /// </summary>
-        /// <param name="v">Der erste Richtungsvektor</param>
-        /// <param name="p">Der erste Abschnittsvektor</param>
-        /// <param name="w">Der zweite Richtungsvektor</param>
-        /// <param name="q">Der zweite Abschnittsvektor</param>
-        /// <returns>Der Lösungsvektor</returns>
-        public static Vector2f LinSolve(Vector2f v, Vector2f p, Vector2f w, Vector2f q)
-        {
-            Vector2f b = q - p;
-            w = -w;
-            Vector2f a = new Vector2f();
-
-            if (v.X == 0)
-            {
-                if (v.Y == 0 || w.X == 0)
-                    throw new Exception("Keine oder unendliche viele Lösungen!");
-
-                a.Y = b.X / w.X;
-                a.X = (b.Y - a.Y * w.Y) / v.Y;
-            }
-            else
-            {
-                float r = v.Y / v.X;
-                v.Y = 0;
-                w.Y = w.Y - r * w.X;
-                b.Y = b.Y - r * b.X;
-
-                if (w.Y == 0)
-                    throw new Exception("Keine oder unendliche viele Lösungen!");
-
-                a.Y = b.Y / w.Y;
-                a.X = (b.X - a.Y * w.X) / v.X;
-            }
-            return a;
-        }
 
         static public Collision TestCollision(IActiveCollider activeCollider, Vector2f proposedMovement, IPassiveCollider passiveCollider, bool left, bool right, bool top, bool bot)
         {
@@ -136,7 +99,7 @@ namespace BarbarossaShared
                         Vector2f activeSideSection = new Vector2f(activeCollider.Size.X / factor, 0);
                         for (int i = 0; i <= factor; i++)
                         {
-                            lambdaTop = LinSolve(proposedMovement, activeOriginalLowerLeft + i * activeSideSection, sideDirection, passiveUpperLeft);
+                            lambdaTop = BarbMath.LinSolve(proposedMovement, activeOriginalLowerLeft + i * activeSideSection, sideDirection, passiveUpperLeft);
                             if (lambdaTop.X >= 0 && lambdaTop.X <= 1 && lambdaTop.Y >= 0 && lambdaTop.Y <= 1)
                             {
                                 Vector2f newMovement = proposedMovement * lambdaTop.X;
@@ -153,7 +116,7 @@ namespace BarbarossaShared
                         Vector2f activeSideSection = new Vector2f(0, activeCollider.Size.Y / factor);
                         for (int i = 0; i <= factor; i++)
                         {
-                            lambdaLeft = LinSolve(proposedMovement, activeOriginalUpperRight + i * activeSideSection, sideDirection, passiveUpperLeft);
+                            lambdaLeft = BarbMath.LinSolve(proposedMovement, activeOriginalUpperRight + i * activeSideSection, sideDirection, passiveUpperLeft);
                             if (lambdaLeft.X >= 0 && lambdaLeft.X <= 1 && lambdaLeft.Y >= 0 && lambdaLeft.Y <= 1)
                             {
                                 Vector2f newMovement = proposedMovement * lambdaLeft.X;
@@ -170,7 +133,7 @@ namespace BarbarossaShared
                         Vector2f activeSideSection = new Vector2f(0, activeCollider.Size.Y / factor);
                         for (int i = 0; i <= factor; i++)
                         {
-                            lambdaRight = LinSolve(proposedMovement, activeOriginalUpperLeft + i * activeSideSection, sideDirection, passiveUpperRight);
+                            lambdaRight = BarbMath.LinSolve(proposedMovement, activeOriginalUpperLeft + i * activeSideSection, sideDirection, passiveUpperRight);
                             if (lambdaRight.X >= 0 && lambdaRight.X <= 1 && lambdaRight.Y >= 0 && lambdaRight.Y <= 1)
                             {
                                 Vector2f newMovement = proposedMovement * lambdaRight.X;
@@ -187,7 +150,7 @@ namespace BarbarossaShared
                         Vector2f activeSideSection = new Vector2f(activeCollider.Size.X / factor, 0);
                         for (int i = 0; i <= factor; i++)
                         {
-                            lambdaBot = LinSolve(proposedMovement, activeOriginalUpperLeft + i * activeSideSection, sideDirection, passiveLowerLeft);
+                            lambdaBot = BarbMath.LinSolve(proposedMovement, activeOriginalUpperLeft + i * activeSideSection, sideDirection, passiveLowerLeft);
                             if (lambdaBot.X >= 0 && lambdaBot.X <= 1 && lambdaBot.Y >= 0 && lambdaBot.Y <= 1)
                             {
                                 Vector2f newMovement = proposedMovement * lambdaBot.X;
