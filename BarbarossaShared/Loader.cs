@@ -32,9 +32,17 @@ namespace BarbarossaShared
 
             foreach (XmlNode node in doc.ChildNodes[0].ChildNodes)
             {
-                drawable = LoadDrawableObject(node["Draw"]);
-                drawManager.AddObject(drawable);
-                o = LoadObject(node["Logic"], drawable);
+                XmlNode childNode = node["Draw"];
+                if (childNode != null)
+                {
+                    drawable = LoadDrawableObject(childNode);
+                    drawManager.AddObject(drawable);
+                    o = LoadObject(node["Logic"], drawable);
+                }
+                else
+                {
+                    o = LoadObject(node["Logic"], null);
+                }
                 logicManager.AddObject(o);
             }
         }

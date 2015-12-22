@@ -2,31 +2,91 @@
   <platform0>
     <Logic>
       <Type type="Platform" />
-      <Position x="131" y="330" />
+      <Position x="548" y="283" />
       <Size width="200" height="100" />
     </Logic>
     <Draw>
       <Type type="Platform" />
-      <Position x="131" y="330" />
+      <Position x="548" y="283" />
       <Size width="200" height="100" />
     </Draw>
   </platform0>
   <platform1>
     <Logic>
       <Type type="Platform" />
-      <Position x="342" y="273" />
+      <Position x="821" y="277" />
       <Size width="200" height="100" />
     </Logic>
     <Draw>
       <Type type="Platform" />
-      <Position x="342" y="273" />
+      <Position x="821" y="277" />
       <Size width="200" height="100" />
     </Draw>
   </platform1>
+  <platform2>
+    <Logic>
+      <Type type="Platform" />
+      <Position x="1048" y="215" />
+      <Size width="200" height="100" />
+    </Logic>
+    <Draw>
+      <Type type="Platform" />
+      <Position x="1048" y="215" />
+      <Size width="200" height="100" />
+    </Draw>
+  </platform2>
+  <platform3>
+    <Logic>
+      <Type type="Platform" />
+      <Position x="1333,8" y="188" />
+      <Size width="200" height="100" />
+    </Logic>
+    <Draw>
+      <Type type="Platform" />
+      <Position x="1333,8" y="188" />
+      <Size width="200" height="100" />
+    </Draw>
+  </platform3>
+  <platform4>
+    <Logic>
+      <Type type="Platform" />
+      <Position x="1281,8" y="393" />
+      <Size width="200" height="100" />
+    </Logic>
+    <Draw>
+      <Type type="Platform" />
+      <Position x="1281,8" y="393" />
+      <Size width="200" height="100" />
+    </Draw>
+  </platform4>
+  <platform5>
+    <Logic>
+      <Type type="Platform" />
+      <Position x="1040,8" y="531" />
+      <Size width="200" height="100" />
+    </Logic>
+    <Draw>
+      <Type type="Platform" />
+      <Position x="1040,8" y="531" />
+      <Size width="200" height="100" />
+    </Draw>
+  </platform5>
+  <platform6>
+    <Logic>
+      <Type type="Platform" />
+      <Position x="751,8" y="591" />
+      <Size width="200" height="100" />
+    </Logic>
+    <Draw>
+      <Type type="Platform" />
+      <Position x="751,8" y="591" />
+      <Size width="200" height="100" />
+    </Draw>
+  </platform6>
   <player0>
     <Logic>
       <Type type="Player" />
-      <Position x="231" y="272" />
+      <Position x="610,8" y="167" />
       <Size width="16" height="50" />
     </Logic>
     <Draw>

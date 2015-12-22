@@ -12,7 +12,7 @@ namespace BarbarossaShared
     public class Player : IActiveCollider, IPassiveCollider, ISaveable
     {
         Vector2f _position;
-        Vector2f IPositionable.Position { get { return _position; } }
+        public Vector2f Position { get { return _position; } }
         Vector2f _size;
         public Vector2f Size { get { return _size; } }
         

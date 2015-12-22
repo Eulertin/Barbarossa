@@ -11,10 +11,12 @@ namespace Barbarossa
     class WindowWrapper : IGraphicsDevice
     {
         RenderWindow _window;
+        View _view;
 
         public WindowWrapper(RenderWindow window)
         {
             _window = window;
+            _view = window.GetView();
         }
 
         public void Clear()
@@ -34,7 +36,8 @@ namespace Barbarossa
 
         public void SetOrigin(SFML.System.Vector2f origin)
         {
-            
+            _view.Center = origin;
+            _window.SetView(_view);
         }
     }
 }

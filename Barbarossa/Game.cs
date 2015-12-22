@@ -30,7 +30,7 @@ namespace Barbarossa
         public Game()
         {
             _window = new RenderWindow(new VideoMode(800, 600), "SFML window");
-            //_window.SetMouseCursorVisible(false);
+            _window.SetMouseCursorVisible(false);
             _window.Closed += new EventHandler(OnClose);
             _window.SetFramerateLimit(60);
 
@@ -59,6 +59,7 @@ namespace Barbarossa
                 timeStamp();
 
                 _logicManager.Update(_timeDelta);
+                _graphicsDevice.SetOrigin(_logicManager.Player.Position);
                 _drawManager.Draw();
 
                 _window.Display();

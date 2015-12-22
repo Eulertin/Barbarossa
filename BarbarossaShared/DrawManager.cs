@@ -17,11 +17,6 @@ namespace BarbarossaShared
             _graphicsDevice = graphicsDevice;
         }
 
-        public void UpdateView()
-        {
-            
-        }
-
         public void AddObject(IDrawable drawable)
         {
             if (_drawableObjectList.Contains(drawable))

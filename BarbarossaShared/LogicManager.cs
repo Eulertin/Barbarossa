@@ -47,6 +47,8 @@ namespace BarbarossaShared
             }
         }
 
+        public Player Player { get { return _playerList.First(); } }
+
         public void Update(float deltaTime)
         {
             foreach (Player player in _playerList)
