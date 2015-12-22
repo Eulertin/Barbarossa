@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using BarbarossaShared;
 using SFML.System;
 using System.Diagnostics;
+using System.Windows.Input;
 
 namespace BarbarossaEditor
 {
@@ -59,11 +60,30 @@ namespace BarbarossaEditor
 
             if (_movePathCreation)
             {
+                Pen pathPen = new Pen(Color.Red);
                 foreach (Vector2f v in _movePath)
                 {
                     _movePathDrawable.UpdatePosition(v);
                     _movePathDrawable.Draw(_graphicsDevice);
                 }
+
+                _movePathDrawable.UpdatePosition(new Vector2f(
+                    canvas.PointToClient(MousePosition).X, canvas.PointToClient(MousePosition).Y) - _origin);
+                _movePathDrawable.Draw(_graphicsDevice);
+
+                for (int i = 0; i < _movePath.Count - 1; i++)
+                {
+                    e.Graphics.DrawLine(pathPen, _movePath[i].X, _movePath[i].Y, _movePath[i+1].X, _movePath[i+1].Y);
+                }
+
+                e.Graphics.DrawLine(pathPen, new Point((int)(_movePath[_movePath.Count - 1].X - _origin.X),
+                    (int)(_movePath[_movePath.Count - 1].Y - _origin.Y)),
+                    PointToClient(MousePosition));
+
+                e.Graphics.DrawLine(pathPen, PointToClient(MousePosition),
+                    new Point((int)(_movePath[0].X - _origin.X),
+                    (int)(_movePath[0].Y - _origin.Y)));
+
             }
         }
 
@@ -110,9 +130,9 @@ namespace BarbarossaEditor
             if (addRadioButton.Checked && e.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 if (_movePathCreation)
-                    _movePath.Add(new Vector2f(e.X, e.Y)-_origin);
+                    _movePath.Add(new Vector2f(e.X, e.Y) - _origin);
                 else
-                    addObjectFromTypeList(new Vector2f(e.X, e.Y)-_origin);
+                    addObjectFromTypeList(new Vector2f(e.X, e.Y) - _origin);
             }
             canvas.Refresh();
         }
@@ -148,8 +168,9 @@ namespace BarbarossaEditor
 
         private void scrollTimer_Tick(object sender, EventArgs e)
         {
-            if(MouseButtons == System.Windows.Forms.MouseButtons.Right)
+            if (MouseButtons == System.Windows.Forms.MouseButtons.Right)
             {
+                System.Windows.Input.Keyboard keyboard;
                 if (canvas.PointToClient(MousePosition).X < 200)
                     _origin += new Vector2f(1, 0) * _scrollWatch.ElapsedMilliseconds / 5f;
                 if (canvas.PointToClient(MousePosition).X > canvas.ClientSize.Width - 200)
@@ -167,6 +188,12 @@ namespace BarbarossaEditor
                 _scrollWatch.Stop();
                 _scrollWatch.Reset();
             }
+        }
+
+        private void canvas_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (_movePathCreation)
+                canvas.Refresh();
         }
     }
 }
