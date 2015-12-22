@@ -38,5 +38,13 @@ namespace BarbarossaEditor
             Player player = new Player(drawablePlayer, startPosition, drawablePlayer.Size);
             return new ObjectConnector(player, drawablePlayer, ObjectConnector.NextName("player"));
         }
+
+        public ObjectConnector CreateMonster(Vector2f[] movePath)
+        {
+            EditorImage image = (EditorImage)_drawableFactory.CreateImage("..\\..\\..\\Bilder\\monster.png");
+            PathDrawable drawablePath = _drawableFactory.CreateDrawablePath(image, movePath);
+            Monster monster = new Monster(drawablePath,movePath,image.Size,5);
+            return new ObjectConnector(monster,drawablePath,ObjectConnector.NextName("monster"));
+        }
     }
 }

@@ -15,12 +15,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarbarossaEditor", "Barbaro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarbarossaShared", "BarbarossaShared\BarbarossaShared.csproj", "{04E8D19F-CC26-4C5D-A73B-BC10909AEF4F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bilder", "Bilder", "{BAC63DE9-9533-4F43-82CC-070469974A93}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Levels", "Levels", "{BAC63DE9-9533-4F43-82CC-070469974A93}"
 	ProjectSection(SolutionItems) = preProject
 		Levels\test.xml = Levels\test.xml
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Levels", "Levels", "{A56DDBB4-D6B6-4EE4-9DDC-8836D722ECC6}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bilder", "Bilder", "{A56DDBB4-D6B6-4EE4-9DDC-8836D722ECC6}"
 	ProjectSection(SolutionItems) = preProject
 		Bilder\monster.png = Bilder\monster.png
 		Bilder\spieler.png = Bilder\spieler.png

@@ -116,12 +116,15 @@ namespace BarbarossaEditor
                             {
                                 typeListBox.Enabled = true;
                                 _movePathCreation = false;
+                                ObjectConnector con = _objectFactory.CreateMonster(_movePath.ToArray());
+                                _logicManager.AddObject(con.LogicObject);
+                                _drawManager.AddObject(con.DrawableObject);
+                                objectListView.Items.Add(con.ListItem);
                             }
                             else
                             {
                                 _movePathCreation = true;
                                 typeListBox.Enabled = false;
-                                _addDrawable = _drawableFactory.CreateImage("..\\..\\..\\Bilder\\monster.png");
                                 _movePath = new List<Vector2f>();
                                 _movePath.Add(mousePosition);
                             }

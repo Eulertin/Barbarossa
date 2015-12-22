@@ -16,8 +16,6 @@ namespace BarbarossaEditor
         Vector2f[] _movePath;
         Pen _pen;
 
-        public Vector2f Size { get { return _image.Size; } }
-
         public PathDrawable(Pen pen, EditorImage image, Vector2f[] movePath)
         {
             _pen = pen;
