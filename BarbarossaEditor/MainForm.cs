@@ -29,6 +29,11 @@ namespace BarbarossaEditor
 
         Stopwatch _scrollWatch;
 
+        bool _wKeyState = false;
+        bool _aKeyState = false;
+        bool _sKeyState = false;
+        bool _dKeyState = false;
+
         IDrawable _addDrawable;
 
         bool _movePathCreation = false;
@@ -185,24 +190,36 @@ namespace BarbarossaEditor
 
         private void scrollTimer_Tick(object sender, EventArgs e)
         {
-            if (MouseButtons == System.Windows.Forms.MouseButtons.Middle)
+            if (System.Windows.Input.Keyboard.IsKeyDown(System.Windows.Input.Key.W))
+                _wKeyState = true;
+            else if (System.Windows.Input.Keyboard.IsKeyUp(System.Windows.Input.Key.W))
+                _wKeyState = false;
+            if (System.Windows.Input.Keyboard.IsKeyDown(System.Windows.Input.Key.A))
+                _aKeyState = true;
+            else if (System.Windows.Input.Keyboard.IsKeyUp(System.Windows.Input.Key.A))
+                _aKeyState = false;
+            if (System.Windows.Input.Keyboard.IsKeyDown(System.Windows.Input.Key.S))
+                _sKeyState = true;
+            else if (System.Windows.Input.Keyboard.IsKeyUp(System.Windows.Input.Key.S))
+                _sKeyState = false;
+            if (System.Windows.Input.Keyboard.IsKeyDown(System.Windows.Input.Key.D))
+                _dKeyState = true;
+            else if (System.Windows.Input.Keyboard.IsKeyUp(System.Windows.Input.Key.D))
+                _dKeyState = false;
+
+            if (_wKeyState || _aKeyState || _sKeyState || _dKeyState)
             {
-                if (canvas.PointToClient(MousePosition).X < 200)
-                    _origin += new Vector2f(1, 0) * _scrollWatch.ElapsedMilliseconds / 5f;
-                if (canvas.PointToClient(MousePosition).X > canvas.ClientSize.Width - 200)
-                    _origin += new Vector2f(-1, 0) * _scrollWatch.ElapsedMilliseconds / 5f;
-                if (canvas.PointToClient(MousePosition).Y < 200)
+                if (_wKeyState)
                     _origin += new Vector2f(0, 1) * _scrollWatch.ElapsedMilliseconds / 5f;
-                if (canvas.PointToClient(MousePosition).Y > canvas.ClientSize.Height - 200)
+                if (_aKeyState)
+                    _origin += new Vector2f(1, 0) * _scrollWatch.ElapsedMilliseconds / 5f;
+                if (_sKeyState)
                     _origin += new Vector2f(0, -1) * _scrollWatch.ElapsedMilliseconds / 5f;
+                if (_dKeyState)
+                    _origin += new Vector2f(-1, 0) * _scrollWatch.ElapsedMilliseconds / 5f;
 
                 _scrollWatch.Restart();
                 canvas.Refresh();
-            }
-            else
-            {
-                _scrollWatch.Stop();
-                _scrollWatch.Reset();
             }
         }
 
