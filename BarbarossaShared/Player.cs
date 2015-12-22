@@ -106,7 +106,7 @@ namespace BarbarossaShared
                 _onGround = false;
                 if (_controlInfo.Up)
                 {
-                    ApplyForce(new Vector2f(0, -_jumpAcceleration));
+                    _speed.Y = -_jumpAcceleration;
                 }
             }
         }
