@@ -10,7 +10,6 @@ using System.Windows.Forms;
 using BarbarossaShared;
 using SFML.System;
 using System.Diagnostics;
-using System.Windows.Input;
 
 namespace BarbarossaEditor
 {
