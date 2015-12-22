@@ -264,7 +264,7 @@
             // 
             // scrollTimer
             // 
-            this.scrollTimer.Interval = 50;
+            this.scrollTimer.Interval = 30;
             this.scrollTimer.Tick += new System.EventHandler(this.scrollTimer_Tick);
             // 
             // MainForm
